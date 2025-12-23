@@ -11,13 +11,14 @@ Whenever you create or update an instruction, include a **header at the top** co
 
 Header format:
 
-Version: <insert version> <br/> Last updated: <insert date>
+Version: <insert version> 
+Last updated: <insert date>
 
 After the header, provide the high-level summary of the instruction, concise and clear.  
 
 Example:
 
-Version: (current version from package.json file) | Last updated: 23.12.2025 14:35 (current date and time)
+Version: (current version from package.json file) | Last updated: 01.02.2020 14:35 (current date and time)
 
 - Explain the main logic of the function  
 - Key points of integration with other modules  
