@@ -1,0 +1,29 @@
+reviews:
+  auto_review: false
+
+changelog:
+  enabled: true
+  output_file: "CHANGELOG.md"
+  grouping:
+    type: "path"
+    rules:
+      - path: "src/pages/Page1/**"
+        title: "Page1"
+      - path: "src/pages/Page2/**"
+        title: "Page2"
+      - path: "src/pages/Page3/**"
+        title: "Page3"
+      - path: "**"
+        title: "Other"
+  metadata:
+    jira:
+      enabled: true
+      pattern: "HBB-\\d+"
+
+visualization:
+  enabled: true
+  export_file: "charts.json"
+  charts:
+    - type: "module_activity"
+    - type: "ticket_count"
+    - type: "commit_activity"
