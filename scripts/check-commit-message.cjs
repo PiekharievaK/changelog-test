@@ -38,7 +38,7 @@ console.log("Commit message:");
 console.log(commitMsg);
 console.log("----------------");
 
-const allowedTypes = ['feat', 'fix', 'chore', 'docs', 'style', 'refactor', 'test', 'perf', 'ci'];
+const allowedTypes = ['feat', 'fix', 'chore'];
 
 const regex = new RegExp(`^(${allowedTypes.join('|')})\\([A-Z]+-[0-9]+\\):\\s.+`);
 
