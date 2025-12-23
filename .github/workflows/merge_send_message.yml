@@ -26,33 +26,7 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          GITHUB_REPO: ${{ github.repository }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          VERSION=$(echo "$COMMENT_BODY" | grep -oP 'Version:\s*\K[0-9.]+' || echo "unknown")
 
-          mkdir -p changelogs
-          FILENAME="changelogs/release_notes_$VERSION.txt"
+        run: |
 
           .github/scripts/save_comment_plain.sh "$COMMENT_BODY" "$FILENAME"
-
-          DATE=$(date +'%Y-%m-%d')
-          echo -e "## [$VERSION] - $DATE\n" >> CHANGELOG.md
-          cat "$FILENAME" >> CHANGELOG.md
-          echo -e "\n---\n" >> CHANGELOG.md
-
-          .github/scripts/send_telegram.sh "$(cat $FILENAME)"
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPO.git
-
-          git add "$FILENAME" CHANGELOG.md
-
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Add release notes for version $VERSION"
-            git push origin main
-          fi
