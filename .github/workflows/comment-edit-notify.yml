@@ -3,27 +3,18 @@ name: Notify on comment edit
 on:
   issue_comment:
     types: [edited]
-
 jobs:
   notify:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Load config from config.yml
-        id: load_config
-        run: |
-          TELEGRAM_BOT_TOKEN=$(grep 'TELEGRAM_BOT_TOKEN' config.yml | cut -d' ' -f2)
-          TELEGRAM_CHAT_ID=$(grep 'TELEGRAM_CHAT_ID' config.yml | cut -d' ' -f2)
-          echo "TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}" >> $GITHUB_ENV
-          echo "TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}" >> $GITHUB_ENV
-
-      - name: Check if the comment is from CodeRabbitAI bot
+      - name: Run Telegram notification script
         if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
         run: |
-
-          curl -s -X POST \
-            https://api.telegram.org/bot${{ env.TELEGRAM_BOT_TOKEN }}/sendMessage \
-            -d chat_id=${{ env.TELEGRAM_CHAT_ID }} \
-            -d text="CodeRabbitAI  #${{ github.event.issue.number }}.\n Summary: ${{ github.event.comment.body }}\n details: ${{ github.event.comment.html_url }}"
+          .github/scripts/send_telegram.sh \
+            "${{ github.event.comment.body }}" \
+            "${{ github.event.issue.number }}" \
+            "${{ github.event.comment.html_url }}"
