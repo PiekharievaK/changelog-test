@@ -19,6 +19,8 @@ Version: 1.2 | Last updated: 23.12.2025
 - Important nuances or limitations
 "
 
+  @coderabbitai generate sequence diagram
+
 changelog:
   enabled: true
   output_file: "CHANGELOG.md"
