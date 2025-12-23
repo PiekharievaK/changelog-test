@@ -17,6 +17,7 @@ export const AddPage = () => {
             {result !== null && <p>Result: {result}</p>}
             <TestingComponent/>
 
+
         </div>
     );
 }
