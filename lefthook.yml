@@ -1,23 +1,24 @@
-commit-msg:
+prepare-commit-msg:
   parallel: false
   jobs:
     - name: check-commit-format
       run: |
-        commit_msg=$(git log -1 --pretty=%B)
-
+        commit_msg_file=$1
+        commit_msg=$(cat "$commit_msg_file")
+        
         echo "Commit message: $commit_msg"
 
         commit_msg_lower=${commit_msg,,}
 
-        allowed_types="feat|fix"
+        allowed_types="feat|fix|chore|docs|style|refactor|test|perf|ci"  # Разрешенные типы
 
+        # Проверяем, что коммит начинается с правильного типа и с номером задачи
         if [[ ! "$commit_msg_lower" =~ ^($allowed_types)\([a-zA-Z]+-[0-9]+\):\ .+ ]]; then
           echo "ERROR: Commit message format invalid!"
           echo "It should be: <type>(<task-number>): <description>"
           echo "Allowed types: feat, fix, chore, docs, style, refactor, test, perf, ci"
           exit 1
         fi
-
 
 
 # EXAMPLE USAGE:
