@@ -14,8 +14,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUMBER: ${{ github.event.pull_request.title }}
+          COMMENT_BODY: ${{ github.event.pull_request.body }}
+          COMMENT_URL: ${{ github.event.pull_request.html_url }}
         run: |
           .github/scripts/send_telegram.sh "$PR_TITLE" "$PR_BODY" "$PR_URL"
