@@ -15,28 +15,13 @@ jobs:
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
 
-      - name: Debug env presenceF
+      - name: Run Telegram notification script
+        if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
         run: |
-          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
-          echo "❌ TELEGRAM_BOT_TOKEN is EMPTY"
-          else
-          echo "✅ TELEGRAM_BOT_TOKEN is SET"
-          fi
-          
-          if [ -z "$TELEGRAM_CHAT_ID" ]; then
-          echo "❌ TELEGRAM_CHAT_ID is EMPTY"
-          else
-          echo "✅ TELEGRAM_CHAT_ID is SET"
-          fi
-
-
-          - name: Run Telegram notification script
-            if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
-            env:
-              TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-              TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-              COMMENT_BODY: ${{ github.event.comment.body }}
-              PR_NUMBER: ${{ github.event.issue.number }}
-              COMMENT_URL: ${{ github.event.comment.html_url }}
-            run: |
-              .github/scripts/send_telegram.sh
+          .github/scripts/send_telegram.sh
