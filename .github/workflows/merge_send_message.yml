@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Make scripts executable
         run: chmod +x .github/scripts/save_comment_plain.sh .github/scripts/send_telegram.sh
@@ -24,6 +26,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=$(echo "$COMMENT_BODY" | grep -oP 'Version:\s*\K[0-9.]+' || echo "unknown")
 
@@ -41,6 +45,14 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPO.git
+
           git add "$FILENAME" CHANGELOG.md
-          git commit -m "Add release notes for version $VERSION"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add release notes for version $VERSION"
+            git push origin main
+          fi
