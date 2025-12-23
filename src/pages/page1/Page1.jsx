@@ -16,7 +16,7 @@ export const AddPage = () => {
             <button onClick={() => handleAdd(a, b, setResult)}>Start</button>
             {result !== null && <p>Result: {result}</p>}
             <TestingComponent/>
-            <TestingComponent/>
+            {/*<TestingComponent/>*/}
         </div>
     );
 }
