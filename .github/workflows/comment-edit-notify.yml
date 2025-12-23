@@ -7,7 +7,6 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    environment: test
 
     steps:
       - name: Checkout repository
