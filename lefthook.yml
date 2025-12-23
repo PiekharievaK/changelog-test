@@ -1,17 +1,17 @@
 commit-msg:
   parallel: false
-  scripts:
-    check-commit-format:
-      runner: bash
-      script: |
-        commit_msg_file=$1
-        commit_msg=$(cat "$commit_msg_file")
+  jobs:
+    - name: check-commit-format
+      run: |
+        commit_msg=$(git log -1 --pretty=%B)
+
+        echo "Commit message: $commit_msg"
 
         commit_msg_lower=${commit_msg,,}
 
-        allowed_types="feat|fix|chore|docs|style|refactor|test|perf|ci"
+        allowed_types="feat|fix"
 
-        if [[ ! "$commit_msg_lower" =~ ^($allowed_types)\([0-9]+\):\ .+ ]]; then
+        if [[ ! "$commit_msg_lower" =~ ^($allowed_types)\([a-zA-Z]+-[0-9]+\):\ .+ ]]; then
           echo "ERROR: Commit message format invalid!"
           echo "It should be: <type>(<task-number>): <description>"
           echo "Allowed types: feat, fix, chore, docs, style, refactor, test, perf, ci"
