@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
+      - name: Make script executable
+        run: chmod +x .github/scripts/send_telegram.sh
+
       - name: Check PR merged
         if: github.event.pull_request.merged == true
         env:
@@ -18,4 +21,4 @@ jobs:
           COMMENT_BODY: ${{ github.event.pull_request.body }}
           COMMENT_URL: ${{ github.event.pull_request.html_url }}
         run: |
-          .github/scripts/send_telegram.sh "$PR_TITLE" "$PR_BODY" "$PR_URL"
+          .github/scripts/send_telegram.sh
