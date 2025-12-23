@@ -1,0 +1,64 @@
+commit-msg:
+  parallel: false
+  scripts:
+    check-commit-format:
+      runner: bash
+      script: |
+        commit_msg_file=$1
+        commit_msg=$(cat "$commit_msg_file")
+
+        commit_msg_lower=${commit_msg,,}
+
+        allowed_types="feat|fix|chore|docs|style|refactor|test|perf|ci"
+
+        if [[ ! "$commit_msg_lower" =~ ^($allowed_types)\([0-9]+\):\ .+ ]]; then
+          echo "ERROR: Commit message format invalid!"
+          echo "It should be: <type>(<task-number>): <description>"
+          echo "Allowed types: feat, fix, chore, docs, style, refactor, test, perf, ci"
+          exit 1
+        fi
+
+
+
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://lefthook.dev/configuration/
+#
+# pre-push:
+#   jobs:
+#     - name: packages audit
+#       tags:
+#         - frontend
+#         - security
+#       run: yarn audit
+#
+#     - name: gems audit
+#       tags:
+#         - backend
+#         - security
+#       run: bundle audit
+#
+# pre-commit:
+#   parallel: true
+#   jobs:
+#     - run: yarn eslint {staged_files}
+#       glob: "*.{js,ts,jsx,tsx}"
+#
+#     - name: rubocop
+#       glob: "*.rb"
+#       exclude:
+#         - config/application.rb
+#         - config/routes.rb
+#       run: bundle exec rubocop --force-exclusion {all_files}
+#
+#     - name: govet
+#       files: git ls-files -m
+#       glob: "*.go"
+#       run: go vet {files}
+#
+#     - script: "hello.js"
+#       runner: node
+#
+#     - script: "hello.go"
+#       runner: go run
