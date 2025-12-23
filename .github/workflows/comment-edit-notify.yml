@@ -7,6 +7,7 @@ on:
 jobs:
   notify:
     runs-on: ubuntu-latest
+    environment: test
 
     steps:
       - name: Checkout repository
@@ -16,8 +17,7 @@ jobs:
         run: chmod +x .github/scripts/send_telegram.sh
 
       - name: Run Telegram notification script
-        if: github.event.comment.user.login == 'CodeRabbitAI[bot]' && contains(github.event.comment.body, 'Summary')
-
+        if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
