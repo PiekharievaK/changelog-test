@@ -19,6 +19,7 @@ changelog:
       field: "version"
     date:
       source: "date"
+      value: "{{ date }}"
 
 visualization:
   enabled: true
