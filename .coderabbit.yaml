@@ -1,29 +1,64 @@
+#
+#reviews:
+#  path_instructions:
+#    - path: "src/pages/**"
+#      instructions: "Name this changes just by page folder, like src/pages/Page1 convert to Page1 and description, src/pages/Page2 convert to Page2 and same to all of path in pages folder."
+#  high_level_summary_instructions: "You are an assistant for generating high-level summary instructions for code.
+#Whenever you create or update an instruction, include a **header at the top** containing:
+#
+#1. The version of the instruction (the version I am updating it is in package.json file)
+#2. The date of the last update (in DD.MM.YYYY HH:MM format) it is current date and current time
+#
+#Header format:
+#
+#Version: <insert version>
+#Last updated: <insert date>
+#
+#After the header, provide the high-level summary of the instruction, concise and clear.
+#
+#Example:
+#
+#Version: (current version from package.json file)
+#Last updated: (current date and time)
+#
+#- Explain the main logic of the function
+#- Key points of integration with other modules
+#- Important nuances or limitations
+#"
+#  sequence_diagrams: true
 
-reviews:
-  path_instructions:
-    - path: "src/pages/**"
-      instructions: "Name this changes just by page folder, like src/pages/Page1 convert to Page1 and description, src/pages/Page2 convert to Page2 and same to all of path in pages folder."
-  high_level_summary_instructions: "You are an assistant for generating high-level summary instructions for code.  
-Whenever you create or update an instruction, include a **header at the top** containing:
 
-1. The version of the instruction (the version I am updating it is in package.json file)  
-2. The date of the last update (in DD.MM.YYYY HH:MM format) it is current date and current time
+  reviews:
+    path_instructions:
+      - path: "src/pages/**"
+        instructions: |
+          Changes related to the page:
+          - Explain logic and UI changes related to this page (using the page name).
+          - List any module integrations affecting this page.
+          - For any specific changes, describe the updates made to the page's functionality or UI.
 
-Header format:
+      - path: "**"
+        instructions: |
+          Other Changes:
+          - Summarize the changes made outside of pages, such as common utilities, services, or shared components.
 
-Version: <insert version> 
-Last updated: <insert date>
+    high_level_summary_instructions: |
+      You are an assistant for generating high-level summary instructions for code.  
+      Whenever you create or update an instruction, include a **header at the top** containing:
+      1. The version of the instruction (the version I am updating it is in package.json file)
+      2. The date of the last update (in DD.MM.YYYY HH:MM format) it is current date and current time.
 
-After the header, provide the high-level summary of the instruction, concise and clear.  
+      Header format:
+      Version: <insert version>
+      Last updated: <insert date>
 
-Example:
+      After the header, provide the high-level summary of the instruction, concise and clear.
 
-Version: (current version from package.json file) 
-Last updated: (current date and time)
+      Example:
+      Version: (current version from package.json file)
+      Last updated: (current date and time)
+      - Explain the main logic of the function
+      - Key points of integration with other modules
+      - Important nuances or limitations
 
-- Explain the main logic of the function  
-- Key points of integration with other modules  
-- Important nuances or limitations
-"
-
-  sequence_diagrams: true
+    sequence_diagrams: true

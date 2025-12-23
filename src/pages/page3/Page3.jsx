@@ -1,18 +1,18 @@
 import { useState } from "react";
+import {handleMath} from "../../utils/utils.js";
 
 export default function MultiplyPage() {
   const [a, setA] = useState(0);
   const [b, setB] = useState(0);
   const [result, setResult] = useState(null);
 
-  const handleMultiply = () => setResult(Number(a) * Number(b));
-
+  const action = '*'
   return (
     <div>
-      <h2>*</h2>
+      <h2>{action}</h2>
       <input type="number" value={a} onChange={e => setA(e.target.value)} />
       <input type="number" value={b} onChange={e => setB(e.target.value)} />
-      <button onClick={handleMultiply}>Start</button>
+      <button onClick={() => handleMath(a, b, action , setResult)}>Start</button>
       {result !== null && <p>Result: {result}</p>}
     </div>
   );
