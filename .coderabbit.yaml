@@ -2,7 +2,7 @@
 reviews:
   path_instructions:
     - path: "src/pages/**"
-      instructions: "Name this changes just by page folder, like src/pages/Page1 convert to Page1 and description."
+      instructions: "Name this changes just by page folder, like src/pages/Page1 convert to Page1 and description, src/pages/Page2 convert to Page2 and same to all of path in pages folder."
   high_level_summary_instructions: "You are an assistant for generating high-level summary instructions for code.  
 Whenever you create or update an instruction, include a **header at the top** containing:
 
@@ -23,3 +23,5 @@ Version: (current version from package.json file) | Last updated: 23.12.2025 14:
 - Key points of integration with other modules  
 - Important nuances or limitations
 "
+
+  sequence_diagrams: true
