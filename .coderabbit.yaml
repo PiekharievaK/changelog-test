@@ -1,0 +1,18 @@
+name: CodeRabbit Changelog
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  coderabbit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run CodeRabbit
+        uses: coderabbit/action@v1
+        with:
+          config-file: ".coderabbit.yaml"
