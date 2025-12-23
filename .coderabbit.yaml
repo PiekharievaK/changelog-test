@@ -14,9 +14,11 @@ changelog:
       - path: "**"
         title: "Other"
   metadata:
-    jira:
-      enabled: true
-      pattern: "HBB-\\d+"
+    version:
+      source: "npm"
+      field: "version"
+    date:
+      source: "date"
 
 visualization:
   enabled: true
