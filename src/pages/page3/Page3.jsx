@@ -13,7 +13,7 @@ export default function MultiplyPage() {
       <input type="number" value={a} onChange={e => setA(e.target.value)} />
       <input type="number" value={b} onChange={e => setB(e.target.value)} />
       <button onClick={handleMultiply}>Start</button>
-      {result !== null && <p>Result: {result}</p>}
+      {result !== null && <p>Result: {result}/</p>}
     </div>
   );
 }
