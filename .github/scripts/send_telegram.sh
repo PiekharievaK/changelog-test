@@ -4,10 +4,10 @@ if [[ -z "$TELEGRAM_BOT_TOKEN" || -z "$TELEGRAM_CHAT_ID" ]]; then
   echo "❌ Telegram secrets are missing"
   exit 1
 fi
-
+MAX=3800
 TEXT="🧠 CodeRabbitAI updated comment in PR #$PR_NUMBER
 
-$COMMENT_BODY
+${COMMENT_BODY:0:$MAX}
 
 🔗 $COMMENT_URL"
 

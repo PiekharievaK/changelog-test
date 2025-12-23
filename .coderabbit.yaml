@@ -48,6 +48,7 @@
       1. The version of the instruction (the version I am updating it is in package.json file)
       2. The date of the last update (in DD.MM.YYYY HH:MM format) it is current date and current time.
 
+
       Header format:
       Version: <insert version>
       Last updated: <insert date>
