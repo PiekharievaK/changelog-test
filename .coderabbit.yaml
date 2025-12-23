@@ -18,35 +18,6 @@ Version: 1.2 | Last updated: 23.12.2025
 - Key points of integration with other modules  
 - Important nuances or limitations
 "
-
-  @coderabbitai generate sequence diagram
-
-changelog:
-  enabled: true
-  output_file: "CHANGELOG.md"
-  grouping:
-    type: "path"
-    rules:
-      - path: "src/pages/Page1/**"
-        title: "Page1"
-      - path: "src/pages/Page2/**"
-        title: "Page2"
-      - path: "src/pages/Page3/**"
-        title: "Page3"
-      - path: "**"
-        title: "Other"
-  metadata:
-    version:
-      source: "npm"
-      field: "version"
-    date:
-      source: "date"
-      value: "{{ date }}"
-
-visualization:
-  enabled: true
-  export_file: "charts.json"
-  charts:
-    - type: "module_activity"
-    - type: "ticket_count"
-    - type: "commit_activity"
+path_instructions:
+  - path: "src/pages/**"
+    instructions: "Name this changes just by page folder, like src/pages/Page1 convert to Page1 and description."
