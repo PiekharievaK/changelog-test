@@ -6,18 +6,18 @@ reviews:
   high_level_summary_instructions: "You are an assistant for generating high-level summary instructions for code.  
 Whenever you create or update an instruction, include a **header at the top** containing:
 
-1. The version of the instruction (the version I am updating)  
-2. The date of the last update (in DD.MM.YYYY format)
+1. The version of the instruction (the version I am updating it is in package.json file)  
+2. The date of the last update (in DD.MM.YYYY HH:MM format) it is current date and current time
 
 Header format:
 
-Version: <insert version> | Last updated: <insert date>
+Version: <insert version> <br/> Last updated: <insert date>
 
 After the header, provide the high-level summary of the instruction, concise and clear.  
 
 Example:
 
-Version: 1.2 | Last updated: 23.12.2025
+Version: (current version from package.json file) | Last updated: 23.12.2025 14:35 (current date and time)
 
 - Explain the main logic of the function  
 - Key points of integration with other modules  
