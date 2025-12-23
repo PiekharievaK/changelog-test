@@ -12,7 +12,6 @@ export const AddPage = () => {
         <div>
             <h2>+</h2>
             <TestingComponent/>
-            <TestingComponent/>
             <input type="number" value={a} onChange={e => setA(e.target.value)}/>
             <input type="number" value={b} onChange={e => setB(e.target.value)}/>
             <button onClick={() => handleAdd(a, b, setResult)}>Start</button>
