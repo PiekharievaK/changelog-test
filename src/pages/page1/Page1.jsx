@@ -15,8 +15,6 @@ export const AddPage = () => {
             <input type="number" value={b} onChange={e => setB(e.target.value)}/>
             <button onClick={() => handleAdd(a, b, setResult)}>Start</button>
             {result !== null && <p>Result: {result}</p>}
-            <TestingComponent/>
-            <TestingComponent/>
         </div>
     );
 }
