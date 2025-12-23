@@ -8,7 +8,7 @@ MAX=3800
 CLEAN_BODY=$(echo "$COMMENT_BODY" | sed '/<!--.*-->/d')
 
 
-TEXT="🧠 CodeRabbitAI updated comment in PR #$PR_NUMBER
+TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
 
 ${CLEAN_BODY:0:$MAX}
 

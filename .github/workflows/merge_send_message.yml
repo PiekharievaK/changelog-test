@@ -1,32 +1,27 @@
-name: Generate Changelog on PR merge
+name: Notify on PR merge
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  changelog:
+  notify_merge:
     runs-on: ubuntu-latest
     environment: test
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
-      - name: Make scripts executable
-        run: chmod +x .github/scripts/save_comment_plain.sh .github/scripts/send_telegram.sh
+      - name: Make script executable
+        run: chmod +x .github/scripts/send_telegram.sh
 
-      - name: Generate changelog and send Telegram
+      - name: Check PR merged
         if: github.event.pull_request.merged == true
         env:
-          COMMENT_BODY: ${{ github.event.pull_request.body }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
+          PR_NUMBER: ${{ github.event.pull_request.title }}
+          COMMENT_BODY: ${{ github.event.pull_request.body }}
+          COMMENT_URL: ${{ github.event.pull_request.html_url }}
         run: |
-
-          .github/scripts/save_comment_plain.sh "$COMMENT_BODY" "$FILENAME"
+          .github/scripts/send_telegram.sh
