@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
 
