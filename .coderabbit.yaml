@@ -18,7 +18,8 @@ After the header, provide the high-level summary of the instruction, concise and
 
 Example:
 
-Version: (current version from package.json file) | Last updated: 01.02.2020 14:35 (current date and time)
+Version: (current version from package.json file) 
+Last updated: 01.02.2020 14:35 (current date and time)
 
 - Explain the main logic of the function  
 - Key points of integration with other modules  
