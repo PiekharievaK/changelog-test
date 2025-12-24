@@ -6,7 +6,9 @@ export default function MultiplyPage() {
   const [b, setB] = useState(0);
   const [result, setResult] = useState(null);
 
-  const action = '-'
+  const action1 = '-'
+    const action2 = '+'
+    const action3 = '*'
   return (
     <div>
       <h2>{action}</h2>

@@ -1,31 +1,18 @@
-import {Link, Outlet} from "react-router-dom";
-import {MathBlock} from "../../conponents/mathblock/mathBlock.jsx";
+import {useState} from "react";
+import {handleAdd} from "./utils/utils.js";
+import {TestingComponent} from "./components/testingComponent.jsx";
+import {TestingComponent2} from "./components/testComponent2.jsx";
 
 export const AddPage = () => {
 
-    const action1 = "-";
-    const action2 = "+";
-    const action3 = "*";
-
     return (
         <div>
-            <h2>Page   1</h2>
-            <nav>
-                <Link to="1">SubPage 1</Link> |{" "}
-                <Link to="2">SubPage 2</Link> |{" "}
-                <Link to="3">SubPage 3</Link>
-            </nav>
-            <div>
-                <MathBlock action={action2}/>
-            </div>
-            <div>
-                <MathBlock action={action1}/>
-            </div>
-
-            <div>
-                <MathBlock action={action3}/>
-            </div>
-            <Outlet/>
+            <h2>+</h2>
+            <input type="number" value={a} onChange={e => setA(e.target.value)}/>
+            <input type="number" value={b} onChange={e => setB(e.target.value)}/>
+            <button onClick={() => handleAdd(a, b, setResult)}>Start</button>
+            {result !== null && <p>Result: {result}</p>}
+            <TestingComponent2/>
         </div>
     );
 };
