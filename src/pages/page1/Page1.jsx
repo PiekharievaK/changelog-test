@@ -11,14 +11,10 @@ export const AddPage = () => {
     return (
         <div>
             <h2>+</h2>
-
-            <TestingComponent/>
             <input type="number" value={a} onChange={e => setA(e.target.value)}/>
             <input type="number" value={b} onChange={e => setB(e.target.value)}/>
             <button onClick={() => handleAdd(a, b, setResult)}>Start</button>
             {result !== null && <p>Result: {result}</p>}
-            <TestingComponent/>
-
         </div>
     );
 }

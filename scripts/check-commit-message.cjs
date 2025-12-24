@@ -42,7 +42,7 @@ const allowedTypes = ['feat', 'fix', 'chore'];
 
 const regex = new RegExp(`^(${allowedTypes.join('|')})\\([A-Z]+-[0-9]+\\):\\s.+`);
 
-if (!regex.test(commitMsg)) {
+if (!regex.test(commitMsg) && !commitMsg.includes('Merge branch')) {
     console.error("❌ ERROR: Commit message format invalid!");
     console.error("Expected format:");
     console.error("  <type>(<TASK-ID>): <description>");
