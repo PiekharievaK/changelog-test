@@ -17,7 +17,6 @@ function App() {
                     <Link to="/2">Page 2</Link> |{" "}
                     <Link to="/3">Page 3</Link>
                 </nav>
-
                 <Routes>
                     <Route path="/1" element={<AddPage />}>
                         <Route path="1" element={<Subpage1 />} />
