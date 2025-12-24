@@ -8,23 +8,36 @@ jobs:
   notify_merge:
     runs-on: ubuntu-latest
     environment: test
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Make script executable
-        run: chmod +x .github/scripts/send_telegram.sh
+        run: chmod +x .github/scripts/merge_summary_telegram.sh
 
-      - name: Check PR merged
+      - name: Get version from package.json
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+
+      - name: Check PR merged and notify
         if: github.event.pull_request.merged == true
         env:
-
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PR_NUMBER: ${{ github.event.pull_request.title }}
+
+          PR_TITLE: ${{ github.event.pull_request.title }}
           COMMENT_BODY: ${{ github.event.pull_request.body }}
           COMMENT_URL: ${{ github.event.pull_request.html_url }}
+
+          MERGE_AUTHOR: ${{ github.event.pull_request.merged_by.login }}
+          MERGE_DATE: ${{ github.event.pull_request.merged_at }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          VERSION: ${{ env.VERSION }}
+
         run: |
-
-          .github/scripts/send_telegram.sh
-
+          .github/scripts/merge_summary_telegram.sh
