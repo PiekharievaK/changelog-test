@@ -20,7 +20,6 @@ export const AddPage = () => {
             <div>
                 <MathBlock action={action1}/>
             </div>
-
             <div>
                 <MathBlock action={action2}/>
             </div>
