@@ -7,7 +7,6 @@ export const AddPage = () => {
     const [b, setB] = useState(0);
     const [result, setResult] = useState(null);
 
-
     return (
         <div>
             <h2>+</h2>
