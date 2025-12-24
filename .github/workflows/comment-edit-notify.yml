@@ -16,7 +16,7 @@ jobs:
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
 
-      - name: Print event data
+      - name: Debug output
         run: |
           echo "Comment user login: ${{ github.event.comment.user.login }}"
           echo "Comment body: ${{ github.event.comment.body }}"
@@ -24,7 +24,6 @@ jobs:
           echo "PR number: ${{ github.event.issue.number }}"
           echo "PR base branch: ${{ github.event.issue.pull_request.base.ref }}"
           echo "PR target branch: ${{ github.event.issue.pull_request.head.ref }}"
-          echo "PR action: ${{ github.event.action }}"
 
       - name: Run Telegram notification script
         if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
@@ -33,9 +32,17 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           COMMENT_BODY: ${{ github.event.comment.body }}
           PR_NUMBER: ${{ github.event.issue.number }}
-          PR_TO_BRANCH: ${{github.event.issue.pull_request.base.ref}}
+          PR_TO_BRANCH: ${{ github.event.issue.pull_request.base.ref }}
           COMMENT_URL: ${{ github.event.comment.html_url }}
           EVENT: ${{ github.event }}
         run: |
+          # Print all environment variables to debug the issue
+          echo "TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN"
+          echo "TELEGRAM_CHAT_ID=$TELEGRAM_CHAT_ID"
+          echo "COMMENT_BODY=$COMMENT_BODY"
+          echo "PR_NUMBER=$PR_NUMBER"
+          echo "PR_TO_BRANCH=$PR_TO_BRANCH"
+          echo "COMMENT_URL=$COMMENT_URL"
           echo "EVENT=$EVENT"
+
           .github/scripts/send_telegram.sh
