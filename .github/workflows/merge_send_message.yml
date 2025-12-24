@@ -38,6 +38,6 @@ jobs:
           MERGE_DATE: ${{ github.event.pull_request.merged_at }}
           REPO_NAME: ${{ github.event.repository.name }}
           VERSION: ${{ env.VERSION }}
-          CHANGED_FILES: ${{ env.CHANGED_FILES }}
+
         run: |
           .github/scripts/merge_summary_telegram.sh
