@@ -9,7 +9,7 @@ export const AddPage = () => {
 
     return (
         <div>
-            <h2>Page  1</h2>
+            <h2>Page   1</h2>
             <nav>
                 <Link to="1">SubPage 1</Link> |{" "}
                 <Link to="2">SubPage 2</Link> |{" "}
