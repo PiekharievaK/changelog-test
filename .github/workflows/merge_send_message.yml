@@ -39,4 +39,4 @@ jobs:
           VERSION: ${{ env.VERSION }}
           CHANGED_FILES: ${{env.CHANGED_FILES}}
         run: |
-          .github/scripts/send_telegram.sh
+          .github/scripts/merge_summary_telegram.sh
