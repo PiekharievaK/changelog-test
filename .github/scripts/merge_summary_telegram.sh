@@ -10,7 +10,7 @@ MAX=3800
 CLEAN_BODY=$(echo "$COMMENT_BODY" \
   | sed '/<!--.*-->/d' \
   | sed '/^[[:space:]]*$/N;/^\n$/D' \
-  | sed 's/^## \(.*\)$/**\1**/' \ )
+  | sed 's/^## \(.*\)$/**\1**/' )
 
 MERGE_DATE_FORMATTED=""
 if [[ -n "$MERGE_DATE" ]]; then
@@ -27,7 +27,6 @@ TEXT="${MESSAGE_HEADER}
 ${CLEAN_BODY:0:$MAX}
 
 🔗 $COMMENT_URL"
-
 
 curl -s -X POST \
   "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
