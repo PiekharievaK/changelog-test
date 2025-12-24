@@ -16,7 +16,6 @@ export const AddPage = () => {
                 <Link to="2">SubPage 2</Link> |{" "}
                 {/*<Link to="3">SubPage 3</Link>*/}
             </nav>
-
             <div>
                 <MathBlock action={action1}/>
             </div>
