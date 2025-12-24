@@ -9,11 +9,11 @@ MAX=3800
 #CLEAN_BODY=$(echo "$COMMENT_BODY" | sed '/<!--.*-->/d')
 
 CHANGED_FILES=$(echo "$COMMENT_BODY" \
-  | grep '<br>' \
-  | sed 's/.*<br>//' \
+  | sed -n 's/.*<br>\(.*\)|.*/\1/p' \
   | tr -d '`' \
   | tr ',' '\n' \
   | sed 's/^[[:space:]]*//')
+
 
 CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
 
