@@ -25,7 +25,9 @@ jobs:
           PR_NUMBER: ${{ github.event.issue.number }}
           PR_TO_BRANCH: ${{github.event.issue.pull_request.base.ref}}
           COMMENT_URL: ${{ github.event.comment.html_url }}
+          EVENT: ${{ github.event}}
 
         run: |
+          echo "EVENT=$VERSION"
           .github/scripts/send_telegram.sh
           
