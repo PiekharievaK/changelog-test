@@ -2,7 +2,7 @@ name: Notify on comment edit
 
 on:
   issue_comment:
-    types: [ edited ]
+    types: [edited]
 
 jobs:
   notify:
@@ -16,6 +16,16 @@ jobs:
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
 
+      - name: Print event data
+        run: |
+          echo "Comment user login: ${{ github.event.comment.user.login }}"
+          echo "Comment body: ${{ github.event.comment.body }}"
+          echo "Comment URL: ${{ github.event.comment.html_url }}"
+          echo "PR number: ${{ github.event.issue.number }}"
+          echo "PR base branch: ${{ github.event.issue.pull_request.base.ref }}"
+          echo "PR target branch: ${{ github.event.issue.pull_request.head.ref }}"
+          echo "PR action: ${{ github.event.action }}"
+
       - name: Run Telegram notification script
         if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
         env:
@@ -25,9 +35,7 @@ jobs:
           PR_NUMBER: ${{ github.event.issue.number }}
           PR_TO_BRANCH: ${{github.event.issue.pull_request.base.ref}}
           COMMENT_URL: ${{ github.event.comment.html_url }}
-          EVENT: ${{ github.event}}
-
+          EVENT: ${{ github.event }}
         run: |
-          echo "EVENT=$VERSION"
+          echo "EVENT=$EVENT"
           .github/scripts/send_telegram.sh
-          
