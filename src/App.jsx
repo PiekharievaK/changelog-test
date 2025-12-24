@@ -6,6 +6,10 @@ import { Subpage1 } from "./pages/subpages/subpage1";
 import { Subpage2 } from "./pages/subpages/subpage2";
 import { Subpage3 } from "./pages/subpages/subpage3";
 
+/**
+ * Top-level application component that configures the Router, renders navigation links for three pages, and defines routes including three nested subroutes under "/1".
+ * @returns {JSX.Element} The application UI containing the Router, header, navigation, and route definitions.
+ */
 function App() {
     return (
         <Router>
