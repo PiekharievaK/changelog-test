@@ -23,14 +23,6 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Make script executable
-        run: chmod +x .github/scripts/group_changed_files.sh
-
-      - name: Group changed files
-        run: |
-          CHANGED_FILES=$(.github/scripts/group_changed_files.sh)
-          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
-
       - name: Check PR merged
         if: github.event.pull_request.merged == true
         env:
