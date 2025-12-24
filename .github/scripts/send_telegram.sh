@@ -8,13 +8,11 @@ MAX=3800
 
 CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | grep '<br>' \
-  | sed -n 's/.*<br>[[:space:]]*\(.*\)|.*/\1/p' \
+  | sed -n 's/.*<br>[[:space:]]*\([^|]*\)|.*/\1/p' \
   | tr ',' '\n' \
   | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
-
-CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | tr ',' '\n' | sed 's/^/• /')
 
 TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
 
