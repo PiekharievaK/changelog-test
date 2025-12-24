@@ -54,14 +54,9 @@
 
       After the header, provide the high-level summary of the instruction, concise and clear.
 
-      **Changed files:**
-      - List each file that was modified, added, or deleted.
-
       Example:
       Version: (current version from package.json file)
       Last updated: (current date and time)
-
-      All files that were changed (like changes in Walkthrough):
       
       - Explain the main logic of the function
       - Key points of integration with other modules
