@@ -23,6 +23,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           COMMENT_BODY: ${{ github.event.comment.body }}
           PR_NUMBER: ${{ github.event.issue.number }}
+          PR_TO_BRANCH: ${{github.event.issue.pull_request.base.ref}}
           COMMENT_URL: ${{ github.event.comment.html_url }}
 
         run: |
