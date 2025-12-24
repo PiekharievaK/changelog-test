@@ -8,12 +8,9 @@ jobs:
   notify_merge:
     runs-on: ubuntu-latest
     environment: test
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-
 
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
@@ -22,12 +19,12 @@ jobs:
         if: github.event.pull_request.merged == true
         env:
 
-
-
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PR_NUMBER: ${{ github.event.pull_request.title }}
           COMMENT_BODY: ${{ github.event.pull_request.body }}
           COMMENT_URL: ${{ github.event.pull_request.html_url }}
         run: |
+
           .github/scripts/send_telegram.sh
+
