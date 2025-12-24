@@ -24,6 +24,7 @@ jobs:
           COMMENT_BODY: ${{ github.event.comment.body }}
           PR_NUMBER: ${{ github.event.issue.number }}
           COMMENT_URL: ${{ github.event.comment.html_url }}
+
         run: |
           .github/scripts/send_telegram.sh
           
