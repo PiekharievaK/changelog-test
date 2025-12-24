@@ -6,17 +6,17 @@ if [[ -z "$TELEGRAM_BOT_TOKEN" || -z "$TELEGRAM_CHAT_ID" ]]; then
 fi
 MAX=3800
 
-#CLEAN_BODY=$(echo "$COMMENT_BODY" | sed '/<!--.*-->/d')
-
 CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | grep '<br>' \
-  | sed -E 's/.*<br>[[:space:]]*`([^`]+)`.*/\1/' \
-  | tr '\n' ',' \
-  | sed 's/,$//')
+  | sed -n 's/.*<br>[[:space:]]*\([^|]*\)|.*/\1/p' \
+  | tr ',' '\n' \
+  | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' \
+  | tr -d '`')
 
-CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | tr ',' '\n' | sed 's/^/• /')
+CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
 
-TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
+
+TEXT="Files updated in PR #$PR_NUMBER
 
 ${CHANGED_FILES_BULLETS:0:$MAX}
 
