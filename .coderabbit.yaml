@@ -61,8 +61,8 @@
       Version: (current version from package.json file)
       Last updated: (current date and time)
 
-      All files that were changed (as list):
-
+      All files that were changed (like changes in Walkthrough):
+      
       - Explain the main logic of the function
       - Key points of integration with other modules
       - Important nuances or limitations
