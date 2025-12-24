@@ -16,10 +16,10 @@ export const AddPage = () => {
                 <Link to="3">SubPage 3</Link>
             </nav>
             <div>
-                <MathBlock action={action1}/>
+                <MathBlock action={action2}/>
             </div>
             <div>
-                <MathBlock action={action2}/>
+                <MathBlock action={action1}/>
             </div>
 
             <div>
