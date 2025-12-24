@@ -22,15 +22,15 @@ MESSAGE_HEADER="🚀 New release ${VERSION:+v$VERSION} in ${REPO_NAME:-repositor
 📌 PR: $PR_TITLE
 👤 Merged by: ${MERGE_AUTHOR:-unknown}
 ${MERGE_DATE_FORMATTED}"
-
+CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | tr ',' '\n' | sed 's/^/• /')
 
 TEXT="${MESSAGE_HEADER}
-
-${CHANGED_FILES}
+${CHANGED_FILES_BULLETS}
 
 ${CLEAN_BODY:0:$MAX}
 
 🔗 $COMMENT_URL"
+
 
 curl -s -X POST \
   "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \

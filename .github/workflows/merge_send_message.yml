@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Make script executable
         run: chmod +x .github/scripts/send_telegram.sh
@@ -23,7 +23,19 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Check PR merged
+      - name: Get changed files (name + status)
+        if: github.event.pull_request.merged == true
+        run: |
+          BASE_BRANCH=${{ github.event.pull_request.base.ref }}
+          git fetch origin $BASE_BRANCH
+
+          git diff --name-status origin/$BASE_BRANCH...HEAD > changed_files.txt
+          cat changed_files.txt
+
+          CHANGED_FILES=$(paste -sd "," changed_files.txt)
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+
+      - name: Check PR merged and notify
         if: github.event.pull_request.merged == true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -37,6 +49,6 @@ jobs:
           MERGE_DATE: ${{ github.event.pull_request.merged_at }}
           REPO_NAME: ${{ github.event.repository.name }}
           VERSION: ${{ env.VERSION }}
-          CHANGED_FILES: ${{env.CHANGED_FILES}}
+          CHANGED_FILES: ${{ env.CHANGED_FILES }}
         run: |
           .github/scripts/merge_summary_telegram.sh
