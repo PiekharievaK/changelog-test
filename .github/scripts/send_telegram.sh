@@ -6,10 +6,6 @@ if [[ -z "$TELEGRAM_BOT_TOKEN" || -z "$TELEGRAM_CHAT_ID" ]]; then
 fi
 MAX=3800
 
-#CLEAN_BODY=$(echo "$COMMENT_BODY" | sed '/<!--.*-->/d')
-
-
-
 CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | grep '<br>' \
   | sed -E 's/.*<br>[[:space:]]*`([^`]+)`.*/\1/' \
