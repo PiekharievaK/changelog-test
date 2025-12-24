@@ -16,7 +16,7 @@ CHANGED_FILES=$(echo "$COMMENT_BODY" \
 CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
 
 
-TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
+TEXT="Files updated in PR #$PR_NUMBER
 
 ${CHANGED_FILES_BULLETS:0:$MAX}
 
