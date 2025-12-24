@@ -14,7 +14,7 @@ export const AddPage = () => {
             <nav>
                 <Link to="1">SubPage 1</Link> |{" "}
                 <Link to="2">SubPage 2</Link> |{" "}
-                <Link to="3">SubPage 3</Link>
+                {/*<Link to="3">SubPage 3</Link>*/}
             </nav>
 
             <div>
