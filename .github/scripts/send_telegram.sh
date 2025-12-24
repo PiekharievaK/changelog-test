@@ -15,7 +15,7 @@ CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | tr ',' '\n' \
   | sed 's/^[[:space:]]*//')
 
-CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | tr ',' '\n' | sed 's/^/• /')
+CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
 
 TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
 
