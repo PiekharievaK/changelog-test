@@ -22,21 +22,21 @@ export default function MultiplyPage() {
                 <input type="number" value={a} onChange={e => setA(e.target.value)} />
                 <input type="number" value={b} onChange={e => setB(e.target.value)} />
                 <button onClick={() => handleMath(a, b, action1 , setResult)}>Start</button>
-                {result !== null && <p>Result: {result1}</p>}
+                {result1 !== null && <p>Result: {result1}</p>}
             </div>
             <div>
                 <h2>{action2}</h2>
                 <input type="number" value={c} onChange={e => setC(e.target.value)} />
                 <input type="number" value={d} onChange={e => setD(e.target.value)} />
                 <button onClick={() => handleMath(c, d, action2 , setResult)}>Start</button>
-                {result !== null && <p>Result: {result2}</p>}
+                {result2 !== null && <p>Result: {result2}</p>}
             </div>
             <div>
                 <h2>{action3}</h2>
                 <input type="number" value={e} onChange={e => setE(e.target.value)} />
                 <input type="number" value={f} onChange={e => setF(e.target.value)} />
                 <button onClick={() => handleMath(e, f, action3 , setResult)}>Start</button>
-                {result !== null && <p>Result: {result3}</p>}
+                {result3 !== null && <p>Result: {result3}</p>}
             </div>
         </div>
     );
