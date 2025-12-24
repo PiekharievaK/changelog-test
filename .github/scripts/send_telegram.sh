@@ -10,9 +10,10 @@ MAX=3800
 
 CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | sed -n 's/.*<br>\(.*\)|.*/\1/p' \
-  | grep -oP '`[^`]+`' \
-  | tr -d '`' \
-  | grep -E '^[./]')
+  | tr ',' '\n' \
+  | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+
 
 CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
 
