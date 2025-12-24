@@ -10,9 +10,11 @@ CHANGED_FILES=$(echo "$COMMENT_BODY" \
   | grep '<br>' \
   | sed -n 's/.*<br>[[:space:]]*\([^|]*\)|.*/\1/p' \
   | tr ',' '\n' \
-  | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' \
+  | tr -d '`')
 
 CHANGED_FILES_BULLETS=$(echo "$CHANGED_FILES" | sed 's/^/• /')
+
 
 TEXT="CodeRabbitAI updated comment in PR #$PR_NUMBER
 
