@@ -3,8 +3,8 @@ import {MathBlock} from "../../conponents/mathblock/mathBlock.jsx";
 
 export const AddPage = () => {
 
-    const action1 = "+";
-    const action2 = "-";
+    const action1 = "-";
+    const action2 = "+";
     const action3 = "*";
 
     return (

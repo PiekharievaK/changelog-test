@@ -1,3 +1,3 @@
 export const Subpage3 = () =>{
-    return (<div>Subpage3</div>)
+    return (<div>Subpage 3</div>)
 }
