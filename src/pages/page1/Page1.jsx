@@ -25,7 +25,6 @@ export const AddPage = () => {
             <div>
                 <MathBlock action={action3}/>
             </div>
-
             <Outlet/>
         </div>
     );
