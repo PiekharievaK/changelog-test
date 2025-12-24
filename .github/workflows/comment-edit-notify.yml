@@ -17,8 +17,9 @@ jobs:
         run: chmod +x .github/scripts/send_telegram.sh
 
       - name: Run Telegram notification script
-        if: github.event.comment.user.login == 'CodeRabbitAI[bot]'
+        if: github.event.comment.user.login == 'CodeRabbitAI[bot]' && contains('Walkthrough', github.event.comment.body)
         env:
+          PR_TO_BRANCH: ${{ github.event.issue.pull_request.base.ref }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           COMMENT_BODY: ${{ github.event.comment.body }}
