@@ -2,7 +2,7 @@ name: Notify on comment edit
 
 on:
   issue_comment:
-    types: [edited]
+    types: [ edited ]
 
 jobs:
   notify:
@@ -24,7 +24,6 @@ jobs:
           COMMENT_BODY: ${{ github.event.comment.body }}
           PR_NUMBER: ${{ github.event.issue.number }}
           COMMENT_URL: ${{ github.event.comment.html_url }}
-          EVENT: ${{ github.event }}
-        run: |
 
+        run: |
           .github/scripts/send_telegram.sh
