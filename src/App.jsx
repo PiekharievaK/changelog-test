@@ -11,7 +11,6 @@ function App() {
         <Router>
             <div>
                 <h1>Test Page</h1>
-
                 <nav>
                     <Link to="/1">Page 1</Link> |{" "}
                     <Link to="/2">Page 2</Link> |{" "}
