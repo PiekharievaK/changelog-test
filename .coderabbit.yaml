@@ -1,5 +1,10 @@
 reviews:
-  base_branches: [ 'main', 'release' ]
+
+  auto_review:
+    base_branches:
+      - '^main$'
+      - '^release$'
+
   path_instructions:
     - path: "src/pages/**"
       instructions: |
