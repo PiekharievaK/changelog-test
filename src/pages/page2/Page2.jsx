@@ -15,8 +15,8 @@ export default function SubtractPage() {
             <input type="number" value={b} onChange={e => setB(e.target.value)} />
             <button onClick={handleSubtract}>Start</button>
             {result !== null && <p>Result: {result}</p>}
-
             <p>{TEXT}</p>
+
         </div>
     );
 }
