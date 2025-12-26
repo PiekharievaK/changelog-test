@@ -17,6 +17,7 @@ export default function SubtractPage() {
             {result !== null && <p>Result: {result}</p>}
 
             <p>{TEXT}</p>
+
         </div>
     );
 }
