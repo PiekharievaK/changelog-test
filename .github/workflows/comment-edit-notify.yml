@@ -28,4 +28,3 @@ jobs:
 
         run: |
           .github/scripts/send_telegram.sh
-          
