@@ -16,6 +16,7 @@ export default function SubtractPage() {
             <button onClick={handleSubtract}>Start</button>
             {result !== null && <p>Result: {result}</p>}
             <p>{TEXT}</p>
+
         </div>
     );
 }
