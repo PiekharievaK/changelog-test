@@ -7,10 +7,11 @@ fi
 
 MAX=3800
 
-CLEAN_BODY=$(echo "$COMMENT_BODY" \
+CLEAN_BODY=$(printf "%b" "$COMMENT_BODY" \
   | sed '/<!--.*-->/d' \
   | sed '/^[[:space:]]*$/N;/^\n$/D' \
-  | sed 's/^## \(.*\)$/**\1**/' )
+  | sed 's/\*\*\([^*]*\)\*\*/\1/g' \
+  | sed 's/^###\{2,4\}[[:space:]]*/• /' )
 
 MERGE_DATE_FORMATTED=""
 if [[ -n "$MERGE_DATE" ]]; then
