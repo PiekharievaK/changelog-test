@@ -23,7 +23,6 @@ function App() {
                         <Route path="2" element={<Subpage2 />} />
                         <Route path="3" element={<Subpage3 />} />
                     </Route>
-
                     <Route path="/2" element={<SubtractPage />} />
                     <Route path="/3" element={<MultiplyPage />} />
                 </Routes>
