@@ -19,7 +19,7 @@ if [[ -n "$MERGE_DATE" ]]; then
 fi
 
 MESSAGE_HEADER="🚀 New release ${VERSION:+v$VERSION} in ${REPO_NAME:-repository}
-📌 PR:  $PR_NUMBER:  $PR_TITLE
+📌 PR:  #$PR_NUMBER:  $PR_TITLE
 👤 Merged by: ${MERGE_AUTHOR:-unknown}
 ${MERGE_DATE_FORMATTED}"
 
