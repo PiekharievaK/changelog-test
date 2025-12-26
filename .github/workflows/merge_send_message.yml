@@ -3,6 +3,8 @@ name: Notify on PR merge
 on:
   pull_request:
     types: [closed]
+env:
+  TARGET_BRANCHES_JSON: '["main","release"]'
 
 jobs:
   notify_merge:
@@ -21,9 +23,8 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-
       - name: Check PR merged and notify
-        if: github.event.pull_request.merged == true
+        if: github.event.pull_request.merged && contains(fromJSON(env.TARGET_BRANCHES_JSON), github.event.pull_request.base.ref)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
